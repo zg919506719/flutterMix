@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(const MyApp());
 
@@ -46,8 +47,34 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  MethodChannel methodChannel = const MethodChannel("MethodChannel");
+
+
+  @override
+  void initState() {
+    super.initState();
+    testMethodCall();
+  }
+
+  //监听native调用flutter 方法
+  Future testMethodCall() async {
+    methodChannel.setMethodCallHandler((call) async {
+      print("收到你的消息了" + call.method);
+      if (call.method == "methodName") {
+        return "${call.arguments} 我是flutter，收到你的消息了";
+      }
+    });
+  }
+
+  //调用native方法
+  Future invokeNativeMethod() async{
+    String result=await methodChannel.invokeMethod("flutterCallNative","我是flutter，调用native方法了");
+    print("我是flutter收到：$result");
+  }
+
 
   void _incrementCounter() {
+    invokeNativeMethod();
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
