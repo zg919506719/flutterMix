@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/learn_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:learn_flutter/net/dio_utils.dart';
@@ -42,6 +43,11 @@ Future<void> main() async {
     // GestureBinding.instance?.resamplingEnabled = true;
     runApp(MyApp());
   });
+
+  /// 隐藏状态栏。为启动页、引导页设置。完成后修改回显示状态栏。
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
+  // TODO(weilu): 启动体验不佳。状态栏、导航栏在冷启动开始的一瞬间为黑色，且无法通过隐藏、修改颜色等方式进行处理。。。
+  // 相关问题跟踪：https://github.com/flutter/flutter/issues/73351
 }
 
 class MyApp extends StatelessWidget {
@@ -136,15 +142,20 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       builder: (BuildContext context, Widget? child) {
         /// 仅针对安卓
-        if(Device.isAndroid){
+        if (Device.isAndroid) {
           /// 切换深色模式会触发此方法，这里设置导航栏颜色
           ThemeUtils.setSystemNavigationBar(themeProvider.getThemeMode());
         }
+
         /// 保证文字大小不受手机系统设置影响 https://www.kikt.top/posts/flutter/layout/dynamic-text/
         return MediaQuery(
             data: MediaQuery.of(context)
                 .copyWith(textScaler: TextScaler.noScaling),
             child: child!);
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const NotFoundPage());
       },
     );
   }

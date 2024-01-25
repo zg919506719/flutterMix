@@ -1,5 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:learn_flutter/login/login_router.dart';
+import 'package:learn_flutter/routers/i_router.dart';
 
 import '../home/home_page.dart';
 import 'not_found_page.dart';
@@ -7,6 +9,7 @@ import 'not_found_page.dart';
 class Routes {
   static final FluroRouter router = FluroRouter();
   static String home = "/home";
+  static final List<IRouterProvider> _listRouter = [];
 
   static void initRoutes() {
     //指定路由错误返回页
@@ -25,5 +28,18 @@ class Routes {
           Map<String, List<String>> parameters,
         ) =>
                 const Home()));
+
+    //todo web
+    _listRouter.clear();
+
+    /// 各自路由由各自模块管理，统一在此添加初始化
+    _listRouter.add(LoginRouter());
+
+    //初始化路由
+    void initRoute(IRouterProvider routerProvider) {
+      routerProvider.initRouter(router);
+    }
+
+    _listRouter.forEach(initRoute);
   }
 }
