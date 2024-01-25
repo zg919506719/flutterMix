@@ -58,7 +58,7 @@ extension StateTypeExtension on StateType {
 
   String get hintText => <String>[
         "无网络",
-        "空",
+        "未找到改页面",
         "loading",
       ][index];
 }

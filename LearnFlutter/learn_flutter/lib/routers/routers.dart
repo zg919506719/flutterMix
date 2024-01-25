@@ -15,7 +15,7 @@ class Routes {
       Map<String, List<String>> parameters,
     ) {
       debugPrint('未找到目标页');
-      return const NotFountPage();
+      return const NotFoundPage();
     });
 
     router.define(home,

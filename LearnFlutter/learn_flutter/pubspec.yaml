@@ -30,7 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_localizations:
+    sdk: flutter
+  # Localization https://github.com/dart-lang/intl
+  intl: ^0.18.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -46,6 +49,20 @@ dependencies:
   sp_util: 2.0.3
   # 路由框架 https://github.com/theyakka/fluro
   fluro: ^2.0.5
+  # 获取当前设备信息 https://github.com/fluttercommunity/plus_plugins/tree/main/packages/device_info_plus
+  device_info_plus: 9.1.0
+  # 格式化String https://github.com/Naddiseo/dart-sprintf
+  sprintf: ^7.0.0
+  # 扫码 https://github.com/juliuscanute/qr_code_scanner
+  qr_code_scanner: 1.0.0
+  #    git:
+  #      url: https://github.com/xeinebiu/qr_code_scanner.git
+  #      ref: fix_break_changes_platform
+  # App Shortcuts https://github.com/flutter/packages/tree/main/packages/quick_actions
+  quick_actions: 1.0.5
+  # 状态管理 https://github.com/rrousselGit/provider
+  provider: ^6.1.1
+
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +80,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
