@@ -66,6 +66,10 @@ dependencies:
   flutter_swiper_null_safety_flutter3: ^4.0.0   # flutter_swiper很久不维护，可以使用这个替代
   # 图片缓存 https://github.com/renefloor/flutter_cached_network_image
   cached_network_image: ^3.3.0
+  # 处理键盘事件 https://github.com/diegoveloper/flutter_keyboard_actions
+  keyboard_actions: ^4.2.0
+  # 启动URL的插件（支持Web） https://github.com/flutter/packages/tree/main/packages/url_launcher
+  url_launcher: 6.1.8
 
 dev_dependencies:
   flutter_test:

@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/learn_localizations.dart';
-import 'package:intl/intl.dart';
 import 'package:learn_flutter/net/dio_utils.dart';
 import 'package:learn_flutter/net/interceptor.dart';
 import 'package:learn_flutter/provider/locale_provider.dart';
