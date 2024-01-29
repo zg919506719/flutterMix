@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:learn_flutter/login/login_router.dart';
 import 'package:learn_flutter/login/widgets/my_text_field.dart';
 import 'package:learn_flutter/routers/fluro_navigator.dart';
+import 'package:learn_flutter/table/table_router.dart';
 import 'package:learn_flutter/util/toast_utils.dart';
 import 'package:learn_flutter/widgets/my_app_bar.dart';
 import 'package:flutter_gen/gen_l10n/learn_localizations.dart';
@@ -120,5 +121,7 @@ class _LoginPageState extends State<LoginPage>
     Toast.show("登录成功");
   }
 
-  void _routeTable() {}
+  void _routeTable() {
+    NavigatorUtils.push(context, TableRouter.tableRoute);
+  }
 }

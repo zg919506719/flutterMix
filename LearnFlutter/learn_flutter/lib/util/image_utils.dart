@@ -11,8 +11,8 @@ class ImageUtils {
   }
 }
 
-enum ImageFormat { png, jpg, gif, webp }
+enum ImageFormat { png, jpg, gif, webp,svg }
 
 extension ImageFormatExtension on ImageFormat {
-  String get value => ["png", "jpg", "gif", "webp"][index];
+  String get value => ["png", "jpg", "gif", "webp", "svg"][index];
 }

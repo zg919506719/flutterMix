@@ -70,6 +70,7 @@ dependencies:
   keyboard_actions: ^4.2.0
   # 启动URL的插件（支持Web） https://github.com/flutter/packages/tree/main/packages/url_launcher
   url_launcher: 6.1.8
+  flutter_svg: ^2.0.5
 
 dev_dependencies:
   flutter_test:
