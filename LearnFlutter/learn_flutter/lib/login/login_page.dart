@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/login/login_router.dart';
+import 'package:learn_flutter/login/widgets/my_text_field.dart';
 import 'package:learn_flutter/routers/fluro_navigator.dart';
+import 'package:learn_flutter/util/toast_utils.dart';
 import 'package:learn_flutter/widgets/my_app_bar.dart';
 import 'package:flutter_gen/gen_l10n/learn_localizations.dart';
+import 'package:learn_flutter/widgets/my_button.dart';
 import 'package:learn_flutter/widgets/my_scroll_view.dart';
 
 import '../res/gaps.dart';
@@ -51,7 +54,35 @@ class _LoginPageState extends State<LoginPage>
           style: TextStyles.textBold26,
         ),
         Gaps.vGap16,
-
+        MyTextField(
+          controller: _nameController,
+          key: const Key("name"),
+          maxLength: 11,
+          keyboardType: TextInputType.phone,
+          focusNode: _nodeText1,
+          hintText: LearnLocalizations.of(context)!.inputUsernameHint,
+        ),
+        Gaps.vGap8,
+        MyTextField(
+          controller: _passwordController,
+          key: const Key("password"),
+          focusNode: _nodeText2,
+          isInputPwd: true,
+          keyboardType: TextInputType.visiblePassword,
+          hintText: LearnLocalizations.of(context)!.inputPasswordHint,
+        ),
+        Gaps.vGap24,
+        MyButton(
+          onPressed: _clickable ? _login : null,
+          key: const Key("login"),
+          text: LearnLocalizations.of(context)!.login,
+        ),
+        Gaps.vGap24,
+        MyButton(
+          onPressed: _routeTable,
+          key: const Key("table"),
+          text: "到中台",
+        )
       ];
 
   @override
@@ -84,4 +115,10 @@ class _LoginPageState extends State<LoginPage>
       });
     }
   }
+
+  void _login() {
+    Toast.show("登录成功");
+  }
+
+  void _routeTable() {}
 }

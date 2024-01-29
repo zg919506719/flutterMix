@@ -126,4 +126,5 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
     - assets/images/state/
+    - assets/images/login/
     - assets/images/
