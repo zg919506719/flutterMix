@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/learn_localizations.dart';
 import 'package:learn_flutter/net/dio_utils.dart';
 import 'package:learn_flutter/net/interceptor.dart';
 import 'package:learn_flutter/provider/locale_provider.dart';
+import 'package:learn_flutter/provider/table_provide.dart';
 import 'package:learn_flutter/provider/theme_provider.dart';
 import 'package:learn_flutter/res/constant.dart';
 import 'package:learn_flutter/routers/not_found_page.dart';
@@ -79,7 +80,8 @@ class MyApp extends StatelessWidget {
     final Widget app = MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
-        ChangeNotifierProvider(create: (context) => LocaleProvide())
+        ChangeNotifierProvider(create: (context) => LocaleProvide()),
+        ChangeNotifierProvider(create: (context) => TableProvide())
       ],
       child: Consumer2<ThemeProvider, LocaleProvide>(
         builder: (BuildContext context, ThemeProvider value,

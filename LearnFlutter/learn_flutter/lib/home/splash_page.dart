@@ -46,7 +46,7 @@ class _SplashPageState extends State<SplashPage> {
           itemBuilder: (context, index) {
             return LoadAssetImage(_guideList[index],
                 key: Key(_guideList[index]),
-                fit: BoxFit.cover,
+                // fit: BoxFit.cover,
                 width: double.infinity,
                 height: double.infinity,
                 format: ImageFormat.webp);
@@ -57,6 +57,7 @@ class _SplashPageState extends State<SplashPage> {
               _goLogin();
             }
           },
+          index: _guideList.length-1,
           itemCount: _guideList.length),
     );
   }

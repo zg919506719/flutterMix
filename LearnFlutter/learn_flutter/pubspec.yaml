@@ -128,4 +128,5 @@ flutter:
   assets:
     - assets/images/state/
     - assets/images/login/
+    - assets/images/icons/
     - assets/images/
