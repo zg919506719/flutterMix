@@ -12,6 +12,7 @@ import 'package:learn_flutter/widgets/my_scroll_view.dart';
 
 import '../res/gaps.dart';
 import '../res/styles.dart';
+import '../store/store_route.dart';
 import '../util/change_notifier_manage.dart';
 import '../util/other_utils.dart';
 
@@ -83,6 +84,28 @@ class _LoginPageState extends State<LoginPage>
           onPressed: _routeTable,
           key: const Key("table"),
           text: "到中台",
+        ),
+        Container(
+          height: 40,
+          alignment: Alignment.centerRight,
+          margin: EdgeInsets.all(5),
+          child: GestureDetector(
+            child: Text(
+              LearnLocalizations.of(context)!.forgotPasswordLink,
+              key: const Key("forgetPassword"),
+            ),
+            onTap: () => NavigatorUtils.push(context, ""),
+          ),
+        ),
+        Gaps.vGap10,
+        Container(
+          alignment: Alignment.center,
+          child: GestureDetector(
+            child: const Text(
+              "no account register",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
         )
       ];
 
@@ -119,6 +142,7 @@ class _LoginPageState extends State<LoginPage>
 
   void _login() {
     Toast.show("登录成功");
+    NavigatorUtils.push(context, StoreRoute.auditPage);
   }
 
   void _routeTable() {

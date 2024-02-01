@@ -106,6 +106,7 @@ class _SplashPageState extends State<SplashPage> {
         .listen((event) {
       if (SpUtil.getBool(Constant.keyGuide, defValue: true)! ||
           Constant.isDriverTest) {
+        SpUtil.putBool(Constant.keyGuide,  false);
         _initGuide();
       } else {
         _goLogin();

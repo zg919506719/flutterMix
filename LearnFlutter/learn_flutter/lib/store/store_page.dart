@@ -1,0 +1,107 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:learn_flutter/res/dimens.dart';
+import 'package:learn_flutter/res/gaps.dart';
+import 'package:learn_flutter/widgets/my_app_bar.dart';
+import 'package:learn_flutter/widgets/text_field_item.dart';
+
+import '../res/resources.dart';
+import '../util/number_text_input_formatter.dart';
+import '../widgets/select_image.dart';
+
+class StorePage extends StatefulWidget {
+  const StorePage({super.key});
+
+  @override
+  State<StorePage> createState() => _StorePageState();
+}
+
+class _StorePageState extends State<StorePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: MyAppBar(
+        centerTitle: "填写表单",
+      ),
+      body: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(vertical: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gaps.hGap10,
+              const Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: Text(
+                  "店铺资料",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const Center(
+                child: SelectImage(),
+              ),
+              Gaps.hGap10,
+              Center(
+                child: Text("店主手持身份证或营业执照",
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall
+                        ?.copyWith(fontSize: Dimens.font_sp14)),
+              ),
+              Gaps.hGap10,
+              const TextFieldItem(
+                title: "银行卡号",
+                keyboardType: TextInputType.number,
+                hintText: "填写银行卡号",
+              ),
+              SelectItem(title: "主营范围", content: "")
+            ],
+          )
+          /*    KeyboardActions(
+          config: KeyboardActionsConfig(),
+          tapOutsideBehavior: TapOutsideBehavior.opaqueDismiss,
+          child: ,
+        ),*/
+          ),
+
+      /// 同时存在底部按钮与keyboardConfig配置时，为保证Android与iOS平台软键盘弹出高度正常，添加下面的代码。
+      resizeToAvoidBottomInset: true,
+    );
+  }
+}
+
+class SelectItem extends StatelessWidget {
+  final GestureTapCallback? onTap;
+  final String title;
+  final String content;
+
+  const SelectItem({super.key,this.onTap,required this.title,required this.content});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 50,
+        margin: const EdgeInsets.only(right: 8.0,left: 16.0),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: Divider.createBorderSide(context,width: 0.6)
+          )
+        ),
+        child: Row(
+          children: [
+            Text(title),
+            Gaps.hGap10,
+            Expanded(child: Text(
+              content
+            )),
+            Gaps.hGap10,
+            Images.arrowRight
+          ],
+        ),
+      ),
+    );
+  }
+}
+
