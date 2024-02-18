@@ -1,13 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:learn_flutter/res/dimens.dart';
 import 'package:learn_flutter/res/gaps.dart';
+import 'package:learn_flutter/routers/fluro_navigator.dart';
+import 'package:learn_flutter/util/theme_utils.dart';
 import 'package:learn_flutter/widgets/my_app_bar.dart';
 import 'package:learn_flutter/widgets/text_field_item.dart';
 
 import '../res/resources.dart';
+import '../res/styles.dart';
+import '../shop/shop_router.dart';
 import '../util/number_text_input_formatter.dart';
 import '../widgets/select_image.dart';
+import '../widgets/select_item.dart';
 
 class StorePage extends StatefulWidget {
   const StorePage({super.key});
@@ -17,10 +23,13 @@ class StorePage extends StatefulWidget {
 }
 
 class _StorePageState extends State<StorePage> {
+  final GlobalKey<SelectImageState> _imageGlobalKey =
+      GlobalKey<SelectImageState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(
+      appBar: const MyAppBar(
         centerTitle: "填写表单",
       ),
       body: SingleChildScrollView(
@@ -36,8 +45,10 @@ class _StorePageState extends State<StorePage> {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
-              const Center(
-                child: SelectImage(),
+              Center(
+                child: SelectImage(
+                  key: _imageGlobalKey,
+                ),
               ),
               Gaps.hGap10,
               Center(
@@ -53,7 +64,27 @@ class _StorePageState extends State<StorePage> {
                 keyboardType: TextInputType.number,
                 hintText: "填写银行卡号",
               ),
-              SelectItem(title: "主营范围", content: "")
+              SelectItem(
+                title: "主营范围",
+                content: _sortName,
+                onTap: () => _showBottomSheet(),
+              ),
+              SelectItem(
+                title: "选择位置",
+                content: "",
+                onTap: () {
+                  NavigatorUtils.pushResult(
+                      context, ShopRouter.addressSelectPage, (result) {
+                        debugPrint("$result");
+                  });
+                },
+              ),
+              TextButton(
+                  onPressed: () {
+                    debugPrint(
+                        "文件路径${_imageGlobalKey.currentState?.pickedFile?.path}");
+                  },
+                  child: Text("提交"))
             ],
           )
           /*    KeyboardActions(
@@ -67,41 +98,52 @@ class _StorePageState extends State<StorePage> {
       resizeToAvoidBottomInset: true,
     );
   }
-}
 
-class SelectItem extends StatelessWidget {
-  final GestureTapCallback? onTap;
-  final String title;
-  final String content;
-
-  const SelectItem({super.key,this.onTap,required this.title,required this.content});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        height: 50,
-        margin: const EdgeInsets.only(right: 8.0,left: 16.0),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: Divider.createBorderSide(context,width: 0.6)
-          )
-        ),
-        child: Row(
-          children: [
-            Text(title),
-            Gaps.hGap10,
-            Expanded(child: Text(
-              content
-            )),
-            Gaps.hGap10,
-            Images.arrowRight
-          ],
-        ),
-      ),
-    );
+  void _showBottomSheet() {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return DraggableScrollableSheet(
+            builder: (
+              BuildContext context,
+              ScrollController scrollController,
+            ) {
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  //点击效果，墨水池
+                  return InkWell(
+                    child: Container(
+                      child: Text(_list[index]),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        _sortName = _list[index];
+                      });
+                      NavigatorUtils.goBack(context);
+                    },
+                  );
+                },
+                itemExtent: 48,
+                itemCount: _list.length,
+              );
+            },
+            expand: false,
+          );
+        });
   }
-}
 
+  String _sortName = '';
+
+  final List<String> _list = [
+    '水果生鲜',
+    '家用电器',
+    '休闲食品',
+    '茶酒饮料',
+    '美妆个护',
+    '粮油调味',
+    '家庭清洁',
+    '厨具用品',
+    '儿童玩具',
+    '床上用品'
+  ];
+}

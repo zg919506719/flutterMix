@@ -73,6 +73,11 @@ dependencies:
   flutter_svg: ^2.0.5
   # 图片选择插件 https://github.com/flutter/packages/tree/main/packages/image_picker
   image_picker: 1.0.4
+  # 高德2D地图插件（支持Web） https://github.com/simplezhli/flutter_2d_amap
+  flutter_2d_amap:
+    git:
+      ref: '3850a4dc'
+      url: 'https://github.com/simplezhli/flutter_2d_amap.git'
 
 dev_dependencies:
   flutter_test:

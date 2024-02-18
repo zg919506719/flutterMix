@@ -19,10 +19,10 @@ class SelectImage extends StatefulWidget {
   const SelectImage({super.key, this.size = 80, this.url, this.heroTag});
 
   @override
-  State<SelectImage> createState() => _SelectImageState();
+  State<SelectImage> createState() => SelectImageState();
 }
 
-class _SelectImageState extends State<SelectImage> {
+class SelectImageState extends State<SelectImage> {
   ImageProvider? _imageProvider;
   final ImagePicker _picker = ImagePicker();
   XFile? pickedFile;

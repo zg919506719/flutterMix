@@ -222,6 +222,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_2d_amap:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: "3850a4dc"
+      resolved-ref: "3850a4dcf81c0354d034718e876a9732b380fdda"
+      url: "https://github.com/simplezhli/flutter_2d_amap.git"
+    source: git
+    version: "0.3.0+3"
   flutter_cache_manager:
     dependency: transitive
     description:

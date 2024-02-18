@@ -6,6 +6,7 @@ import 'package:learn_flutter/store/store_route.dart';
 import 'package:learn_flutter/table/table_router.dart';
 
 import '../home/home_page.dart';
+import '../shop/shop_router.dart';
 import 'not_found_page.dart';
 
 class Routes {
@@ -38,6 +39,7 @@ class Routes {
     _listRouter.add(LoginRouter());
     _listRouter.add(TableRouter());
     _listRouter.add(StoreRoute());
+    _listRouter.add(ShopRouter());
 
     //初始化路由
     void initRoute(IRouterProvider routerProvider) {

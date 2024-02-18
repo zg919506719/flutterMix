@@ -10,6 +10,7 @@ import 'package:learn_flutter/provider/theme_provider.dart';
 import 'package:learn_flutter/res/constant.dart';
 import 'package:learn_flutter/routers/not_found_page.dart';
 import 'package:learn_flutter/routers/routers.dart';
+import 'package:learn_flutter/store/store_page.dart';
 import 'package:learn_flutter/util/device_utils.dart';
 import 'package:learn_flutter/util/handle_error_utils.dart';
 import 'package:learn_flutter/util/log_utils.dart';
@@ -41,7 +42,7 @@ Future<void> main() async {
 
     /// 1.22 预览功能: 在输入频率与显示刷新率不匹配情况下提供平滑的滚动效果
     // GestureBinding.instance?.resamplingEnabled = true;
-    runApp(MyApp());
+    runApp(MyApp(home: StorePage(),));
   });
 
   /// 隐藏状态栏。为启动页、引导页设置。完成后修改回显示状态栏。
