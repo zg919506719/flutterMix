@@ -1,5 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/widgets/my_search_bar.dart';
 
 class AddressSelectPage extends StatefulWidget {
   const AddressSelectPage({super.key});
@@ -21,6 +23,14 @@ class _AddressSelectPageState extends State<AddressSelectPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      appBar: MySearchBar(
+        onPressed: (text){
+          print(text);
+        },
+      ),
+      body: SafeArea(
+        child: Text(""),
+      ),
     );
   }
 }
