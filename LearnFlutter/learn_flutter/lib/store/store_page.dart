@@ -75,6 +75,7 @@ class _StorePageState extends State<StorePage> {
                 onTap: () {
                   NavigatorUtils.pushResult(
                       context, ShopRouter.addressSelectPage, (result) {
+                        //带结果返回
                         debugPrint("$result");
                   });
                 },

@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_2d_amap/flutter_2d_amap.dart';
+import 'package:learn_flutter/routers/fluro_navigator.dart';
+import 'package:learn_flutter/util/other_utils.dart';
 import 'package:learn_flutter/widgets/my_search_bar.dart';
 
 import '../widgets/my_button.dart';
@@ -69,16 +71,56 @@ class _AddressSelectPageState extends State<AddressSelectPage> {
           )),
           Expanded(
             flex: 11,
-              child: ListView.separated(
-                  controller: _controller,
-                  itemBuilder: (context,index){
-                    return Text("data");
-                  },
-                  separatorBuilder: (_, __) => const Divider(),
-                  itemCount: _list.length),
-                ),
+            child: ListView.separated(
+                controller: _controller,
+                itemBuilder: (context, index) {
+                  return _AddressItem(
+                    data: _list[index],
+                    onTap: () {
+                      NavigatorUtils.goBackWithParams(context, _list[index]);
+                    },
+                  );
+                },
+                separatorBuilder: (_, __) => const Divider(),
+                itemCount: _list.length),
+          ),
         ],
       )),
+    );
+  }
+}
+
+class _AddressItem extends StatelessWidget {
+  final PoiSearch data;
+  final bool isSelected;
+  final GestureTapCallback? onTap;
+
+  const _AddressItem(
+      {super.key, required this.data, this.isSelected = false, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        height: 50,
+        child: Row(
+          children: [
+            Expanded(
+                child: Text(
+                    "${data.provinceName.nullSafe}${data.cityName.nullSafe}${data.adName.nullSafe}${data.title.nullSafe}")),
+            Visibility(
+              visible: isSelected,
+              child: const Icon(
+                Icons.done,
+                color: Colors.blue,
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
