@@ -78,6 +78,8 @@ dependencies:
     git:
       ref: '3850a4dc'
       url: 'https://github.com/simplezhli/flutter_2d_amap.git'
+  flutter_inappwebview: 6.0.0
+#  webview_flutter: ^4.7.0
 
 dev_dependencies:
   flutter_test:
@@ -139,3 +141,11 @@ flutter:
     - assets/images/store/
     - assets/images/order/
     - assets/images/
+    - assets/site/
+    - assets/site/static/
+    - assets/site/static/icon/
+    - assets/site/static/images/
+    - assets/site/static/img/
+    - assets/site/static/js/
+    - assets/site/static/fonts/
+    - assets/site/uni_modules/qiun-data-charts/static/h5/

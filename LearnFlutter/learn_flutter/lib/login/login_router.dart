@@ -5,6 +5,7 @@ import 'package:learn_flutter/routers/i_router.dart';
 
 class LoginRouter implements IRouterProvider {
   static String loginPage = '/login';
+  static String webPage = '/web';
 
   @override
   void initRouter(FluroRouter router) {
@@ -15,5 +16,13 @@ class LoginRouter implements IRouterProvider {
           parameters,
         ) =>
                 const LoginPage()));
+
+    router.define(webPage,
+        handler: Handler(
+            handlerFunc: (
+                context,
+                parameters,
+                ) =>
+            const LoginPage()));
   }
 }

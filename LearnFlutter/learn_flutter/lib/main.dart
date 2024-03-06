@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/learn_localizations.dart';
+import 'package:learn_flutter/login/web_page.dart';
+import 'package:learn_flutter/login/web_page1.dart';
 import 'package:learn_flutter/net/dio_utils.dart';
 import 'package:learn_flutter/net/interceptor.dart';
 import 'package:learn_flutter/provider/locale_provider.dart';
@@ -10,7 +14,6 @@ import 'package:learn_flutter/provider/theme_provider.dart';
 import 'package:learn_flutter/res/constant.dart';
 import 'package:learn_flutter/routers/not_found_page.dart';
 import 'package:learn_flutter/routers/routers.dart';
-import 'package:learn_flutter/store/store_page.dart';
 import 'package:learn_flutter/util/device_utils.dart';
 import 'package:learn_flutter/util/handle_error_utils.dart';
 import 'package:learn_flutter/util/log_utils.dart';
@@ -36,13 +39,15 @@ Future<void> main() async {
   handleError(() async {
     /// 确保初始化完成
     WidgetsFlutterBinding.ensureInitialized();
-
     /// sp初始化
     await SpUtil.getInstance();
 
+
     /// 1.22 预览功能: 在输入频率与显示刷新率不匹配情况下提供平滑的滚动效果
     // GestureBinding.instance?.resamplingEnabled = true;
-    runApp(MyApp(home: StorePage(),));
+    // it should be the first line in main method
+
+    runApp(MyApp(home: const WebPage1(),));
   });
 
   /// 隐藏状态栏。为启动页、引导页设置。完成后修改回显示状态栏。
